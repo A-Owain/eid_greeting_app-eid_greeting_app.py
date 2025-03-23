@@ -7,7 +7,7 @@ import os
 
 # Constants
 IMAGE_PATH = "eid-fitr.jpg"
-FONT_PATH = "NotoSansArabic-SemiBold.ttf"  # Make sure this font file is in the same directory
+FONT_PATH = "NotoSansArabic-SemiBold.ttf"  # Ensure this font file is in the repo root
 
 st.set_page_config(page_title="Eid Greeting Generator", layout="centered")
 st.title("🎉 Eid Greeting Generator")
@@ -23,8 +23,8 @@ if name:
     base_image = Image.open(IMAGE_PATH).convert("RGB")
     draw = ImageDraw.Draw(base_image)
 
-    # Load font
-    font_size = 60
+    # Load font with specified size
+    font_size = 150
     font = ImageFont.truetype(FONT_PATH, font_size)
 
     # Calculate text position
@@ -32,7 +32,7 @@ if name:
     text_bbox = font.getbbox(bidi_text)
     text_width = text_bbox[2] - text_bbox[0]
     x = (image_width - text_width) / 2
-    y = 700  # Adjust this value as needed
+    y = 4050  # Precise vertical position you specified
 
     # Draw shadow (optional)
     shadow_offset = 2
