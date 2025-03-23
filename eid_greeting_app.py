@@ -1,12 +1,13 @@
 import streamlit as st
-from jinja2 import Template
-from html2image import Html2Image
-import tempfile
-import os
+from PIL import Image, ImageDraw, ImageFont
+import arabic_reshaper
+from bidi.algorithm import get_display
 import io
+import os
 
-TEMPLATE_PATH = "template.html"
-hti = Html2Image()
+# Constants
+IMAGE_PATH = "eid-fitr.jpg"
+FONT_PATH = "Amiri-Regular.ttf"  # Make sure this font file is in the same directory
 
 st.set_page_config(page_title="Eid Greeting Generator", layout="centered")
 st.title("🎉 Eid Greeting Generator")
@@ -14,31 +15,42 @@ st.title("🎉 Eid Greeting Generator")
 name = st.text_input("👤 أدخل اسمك:", max_chars=30)
 
 if name:
-    # Load and fill HTML template
-    with open(TEMPLATE_PATH, encoding="utf-8") as f:
-        template = Template(f.read())
-    html_filled = template.render(name=name)
+    # Prepare Arabic text
+    reshaped_text = arabic_reshaper.reshape(name)
+    bidi_text = get_display(reshaped_text)
 
-    with tempfile.TemporaryDirectory() as tmpdir:
-        # Save filled HTML
-        html_path = os.path.join(tmpdir, "greeting.html")
-        with open(html_path, "w", encoding="utf-8") as html_file:
-            html_file.write(html_filled)
+    # Load base image
+    base_image = Image.open(IMAGE_PATH).convert("RGB")
+    draw = ImageDraw.Draw(base_image)
 
-        # Render to PNG
-        hti.screenshot(html_file=html_path, save_as="greeting.png", size=(800, 1000), output_path=tmpdir)
-        img_path = os.path.join(tmpdir, "greeting.png")
+    # Load font
+    font_size = 60
+    font = ImageFont.truetype(FONT_PATH, font_size)
 
-        # Load image into memory
-        with open(img_path, "rb") as img_file:
-            png_bytes = img_file.read()
+    # Calculate text position
+    image_width, _ = base_image.size
+    text_bbox = font.getbbox(bidi_text)
+    text_width = text_bbox[2] - text_bbox[0]
+    x = (image_width - text_width) / 2
+    y = 700  # Adjust this value as needed
 
-        # Preview and download
-        st.image(png_bytes, caption="🎨 معايدتك", use_container_width=True)
+    # Draw shadow (optional)
+    shadow_offset = 2
+    draw.text((x + shadow_offset, y + shadow_offset), bidi_text, font=font, fill="black")
 
-        st.download_button(
-            label="🖼️ تحميل PNG",
-            data=png_bytes,
-            file_name=f"eid_greeting_{name}.png",
-            mime="image/png"
-        )
+    # Draw main text
+    draw.text((x, y), bidi_text, font=font, fill="white")
+
+    # Convert to bytes
+    img_bytes = io.BytesIO()
+    base_image.save(img_bytes, format='PNG')
+    img_bytes.seek(0)
+
+    # Show image and allow download
+    st.image(img_bytes, caption="🎨 معايدتك", use_container_width=True)
+    st.download_button(
+        label="🖼️ تحميل الصورة",
+        data=img_bytes,
+        file_name=f"eid_greeting_{name}.png",
+        mime="image/png"
+    )

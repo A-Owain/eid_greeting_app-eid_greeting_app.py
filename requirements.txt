@@ -1,3 +1,4 @@
 streamlit
-jinja2
-html2image
+pillow
+arabic-reshaper
+python-bidi
