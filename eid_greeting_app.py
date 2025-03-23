@@ -10,9 +10,9 @@ IMAGE_PATH = "eid-fitr.jpg"
 FONT_PATH = "NotoSansArabic-SemiBold.ttf"  # Ensure this font file is in the repo root
 
 st.set_page_config(page_title="Eid Greeting Generator", layout="centered")
-st.title("🎉 Eid Greeting Generator")
+st.title("Eid Greeting Generator")
 
-name = st.text_input("👤 أدخل اسمك:", max_chars=30)
+name = st.text_input("ادخل اسمك | Enter Your Name:", max_chars=30)
 
 if name:
     # Prepare Arabic text
@@ -47,9 +47,9 @@ if name:
     img_bytes.seek(0)
 
     # Show image and allow download
-    st.image(img_bytes, caption="🎨 معايدتك", use_container_width=True)
+    st.image(img_bytes, caption="بطاقة معايدتك | Your Greeting Card", use_container_width=True)
     st.download_button(
-        label="🖼️ تحميل الصورة",
+        label="تنزيل | Download",
         data=img_bytes,
         file_name=f"eid_greeting_{name}.png",
         mime="image/png"
