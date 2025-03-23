@@ -7,7 +7,7 @@ import os
 
 # Constants
 IMAGE_PATH = "eid-fitr.jpg"
-FONT_PATH = "Amiri-Regular.ttf"  # Make sure this font file is in the same directory
+FONT_PATH = "NotoSansArabic-SemiBold.ttf"  # Make sure this font file is in the same directory
 
 st.set_page_config(page_title="Eid Greeting Generator", layout="centered")
 st.title("🎉 Eid Greeting Generator")
