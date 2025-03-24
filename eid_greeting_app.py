@@ -61,14 +61,11 @@ if name:
     # Show image and allow download
     st.image(img_bytes, caption="بطاقة معايدتك | Your Greeting Card:", use_container_width=True)
 
-    # Center the download button
+# Center the download button using HTML + CSS
     st.markdown("""
-    <div style='text-align: center;'>
-        <a href="data:image/png;base64," download>
+    <div style='display: flex; justify-content: center; padding-top: 1rem;'>
     """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([1, 2, 1])
-with col2:
     st.download_button(
         label="تنزيل | Download",
         data=img_bytes,
