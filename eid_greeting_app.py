@@ -21,7 +21,7 @@ if name:
     bidi_name = get_display(reshaped_name)
 
     # Load base image
-    base_image = Image.open(IMAGE_PATH).convert("RGB")
+    st.video("eid-greeting.mp4")
     draw = ImageDraw.Draw(base_image)
 
     # Load fonts
