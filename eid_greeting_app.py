@@ -37,7 +37,7 @@ if name:
     # Draw name
     shadow_offset = 2
     draw.text((x_name + shadow_offset, y_name + shadow_offset), bidi_name, font=font_name, fill="black")
-    draw.text((x_name, y_name), bidi_name, font=font_name, fill="white")
+    draw.text((x_name, y_name), bidi_name, font=font_name, fill="#EA2F2F")
 
     # Draw position if given
     if position.strip():
