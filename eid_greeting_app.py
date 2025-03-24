@@ -13,7 +13,7 @@ st.set_page_config(page_title="Eid Greeting Generator", layout="centered")
 st.title("🎉 Eid Greeting Generator")
 
 name = st.text_input("Enter Your Name | ادخل اسمك", max_chars=30)
-position = st.text_input("Position (Optional) | المسمى الوظيفي (اختياري)",", max_chars=30)
+position = st.text_input("Position (Optional) | المسمى الوظيفي (اختياري)", max_chars=30)
 
 if name:
     # Prepare Arabic text
