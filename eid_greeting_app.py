@@ -35,8 +35,6 @@ if name:
     y_name = 4400
 
     # Draw name
-    shadow_offset = 2
-    draw.text((x_name + shadow_offset, y_name + shadow_offset), bidi_name, font=font_name, fill="black")
     draw.text((x_name, y_name), bidi_name, font=font_name, fill="#EA2F2F")
 
     # Draw position if given
@@ -46,7 +44,7 @@ if name:
         pos_width = font_position.getbbox(bidi_position)[2]
         x_pos = (image_width - pos_width) / 2
         y_pos = y_name + 250
-        draw.text((x_pos + shadow_offset, y_pos + shadow_offset), bidi_position, font=font_position, fill="black")
+        draw.text(bidi_position, font=font_position, fill="#EA2F2F")
         draw.text((x_pos, y_pos), bidi_position, font=font_position, fill="white")
 
     # Convert image to bytes
