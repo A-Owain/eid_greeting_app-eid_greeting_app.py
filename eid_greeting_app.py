@@ -10,7 +10,7 @@ IMAGE_PATH = "eid-fitr.jpg"
 FONT_PATH = "NotoSansArabic-SemiBold.ttf"  # Ensure this font file is in the repo root
 
 st.set_page_config(page_title="Eid Greeting Generator", layout="centered")
-st.title("Eid Greeting Generator")
+st.title("🎉 Eid Greeting Generator")
 
 name = st.text_input("ادخل اسمك | Enter Your Name:", max_chars=30)
 position = st.text_input("المسمى الوظيفي (اختياري) | Position (Optional):", max_chars=30)
@@ -49,7 +49,7 @@ if name:
         pos_bbox = position_font.getbbox(bidi_pos)
         pos_width = pos_bbox[2] - pos_bbox[0]
         x_pos = (image_width - pos_width) / 2
-        y_pos = y_name + 250
+        y_pos = y_name + 180
         draw.text((x_pos + shadow_offset, y_pos + shadow_offset), bidi_pos, font=position_font, fill="black")
         draw.text((x_pos, y_pos), bidi_pos, font=position_font, fill="white")
 
@@ -61,7 +61,7 @@ if name:
     # Show image and allow download
     st.image(img_bytes, caption="بطاقة معايدتك | Your Greeting Card:", use_container_width=True)
 
-# Center the download button using HTML + CSS
+    # Center the download button using HTML + CSS
     st.markdown("""
     <div style='display: flex; justify-content: center; padding-top: 1rem;'>
     """, unsafe_allow_html=True)
@@ -72,5 +72,7 @@ if name:
         file_name=f"eid_greeting_{name}.png",
         mime="image/png"
     )
-    
-    st.markdown("""</div>""", unsafe_allow_html=True)
+
+    st.markdown("""
+    </div>
+    """, unsafe_allow_html=True)
