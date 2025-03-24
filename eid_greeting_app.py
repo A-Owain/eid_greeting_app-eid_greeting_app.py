@@ -12,8 +12,8 @@ FONT_PATH = "NotoSansArabic-SemiBold.ttf"  # Ensure this font file is in the rep
 st.set_page_config(page_title="Eid Greeting Generator", layout="centered")
 st.title("🎉 Eid Greeting Generator")
 
-name = st.text_input("Enter Your Name     |     ادخل اسمك", max_chars=30)
-position = st.text_input("Position (Optional)     |     المسمى الوظيفي (اختياري)", max_chars=30)
+name = st.text_input("Enter Your Name | ادخل اسمك", max_chars=30)
+position = st.text_input("Position (Optional) | المسمى الوظيفي (اختياري)", max_chars=30)
 
 if name:
     # Prepare Arabic text
@@ -59,7 +59,7 @@ if name:
     img_bytes.seek(0)
 
     # Show image and allow download
-    st.image(img_bytes, caption="Your Greeting Card     |     بطاقة معايدتك", use_container_width=True)
+    st.image(img_bytes, caption="Your Greeting Card | بطاقة معايدتك", use_container_width=True)
 
     # Center the download button using HTML + CSS
     st.markdown("""
@@ -67,7 +67,7 @@ if name:
     """, unsafe_allow_html=True)
 
     st.download_button(
-        label="Download     |     تنزيل",
+        label="Download | تنزيل",
         data=img_bytes,
         file_name=f"eid_greeting_{name}.png",
         mime="image/png"
