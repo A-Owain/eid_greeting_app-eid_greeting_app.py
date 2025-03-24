@@ -59,10 +59,19 @@ if name:
     img_bytes.seek(0)
 
     # Show image and allow download
-    st.image(img_bytes, caption="بطاقة معايدتك | Your Greeting Card:", use_container_width=True)
+    st.image(img_bytes, caption="🎨 معايدتك", use_container_width=True)
+
+    # Center the download button
+    st.markdown("""
+    <div style='text-align: center;'>
+        <a href="data:image/png;base64," download>
+    """, unsafe_allow_html=True)
+
     st.download_button(
         label="تنزيل | Download",
         data=img_bytes,
         file_name=f"eid_greeting_{name}.png",
         mime="image/png"
     )
+
+    st.markdown("""</div>""", unsafe_allow_html=True)
