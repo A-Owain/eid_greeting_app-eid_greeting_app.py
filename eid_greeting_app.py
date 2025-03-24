@@ -10,7 +10,7 @@ IMAGE_PATH = "eid-fitr.jpg"
 FONT_PATH = "NotoSansArabic-SemiBold.ttf"  # Ensure this font file is in the repo root
 
 st.set_page_config(page_title="Eid Greeting Generator", layout="centered")
-st.title("🎉 Eid Greeting Generator")
+st.title("TRAY Eid Greeting Generator")
 
 name = st.text_input("Enter Your Name | ادخل اسمك", max_chars=30)
 position = st.text_input("Position (Optional) | المسمى الوظيفي (اختياري)", max_chars=30)
