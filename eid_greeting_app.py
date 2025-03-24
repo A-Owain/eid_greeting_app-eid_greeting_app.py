@@ -10,36 +10,48 @@ IMAGE_PATH = "eid-fitr.jpg"
 FONT_PATH = "NotoSansArabic-SemiBold.ttf"  # Ensure this font file is in the repo root
 
 st.set_page_config(page_title="Eid Greeting Generator", layout="centered")
-st.title("Eid Greeting Generator")
+st.title("🎉 Eid Greeting Generator")
 
-name = st.text_input("ادخل اسمك | Enter Your Name:", max_chars=30)
+name = st.text_input("👤 أدخل اسمك:", max_chars=30)
+position = st.text_input("📌 المسمى الوظيفي (اختياري):", max_chars=30)
 
 if name:
     # Prepare Arabic text
-    reshaped_text = arabic_reshaper.reshape(name)
-    bidi_text = get_display(reshaped_text)
+    reshaped_name = arabic_reshaper.reshape(name)
+    bidi_name = get_display(reshaped_name)
 
     # Load base image
     base_image = Image.open(IMAGE_PATH).convert("RGB")
     draw = ImageDraw.Draw(base_image)
 
-    # Load font with specified size
-    font_size = 150
-    font = ImageFont.truetype(FONT_PATH, font_size)
+    # Load fonts
+    font_size_name = 150
+    font_size_position = 80
+    font = ImageFont.truetype(FONT_PATH, font_size_name)
+    position_font = ImageFont.truetype(FONT_PATH, font_size_position)
 
-    # Calculate text position
+    # Calculate name position
     image_width, _ = base_image.size
-    text_bbox = font.getbbox(bidi_text)
-    text_width = text_bbox[2] - text_bbox[0]
-    x = (image_width - text_width) / 2
-    y = 4050  # Precise vertical position you specified
+    name_bbox = font.getbbox(bidi_name)
+    name_width = name_bbox[2] - name_bbox[0]
+    x_name = (image_width - name_width) / 2
+    y_name = 4050
 
-    # Draw shadow (optional)
+    # Draw name with shadow
     shadow_offset = 2
-    draw.text((x + shadow_offset, y + shadow_offset), bidi_text, font=font, fill="black")
+    draw.text((x_name + shadow_offset, y_name + shadow_offset), bidi_name, font=font, fill="black")
+    draw.text((x_name, y_name), bidi_name, font=font, fill="white")
 
-    # Draw main text
-    draw.text((x, y), bidi_text, font=font, fill="white")
+    # Draw position if provided
+    if position.strip():
+        reshaped_pos = arabic_reshaper.reshape(position)
+        bidi_pos = get_display(reshaped_pos)
+        pos_bbox = position_font.getbbox(bidi_pos)
+        pos_width = pos_bbox[2] - pos_bbox[0]
+        x_pos = (image_width - pos_width) / 2
+        y_pos = y_name + 180
+        draw.text((x_pos + shadow_offset, y_pos + shadow_offset), bidi_pos, font=position_font, fill="black")
+        draw.text((x_pos, y_pos), bidi_pos, font=position_font, fill="white")
 
     # Convert to bytes
     img_bytes = io.BytesIO()
@@ -47,9 +59,9 @@ if name:
     img_bytes.seek(0)
 
     # Show image and allow download
-    st.image(img_bytes, caption="بطاقة معايدتك | Your Greeting Card", use_container_width=True)
+    st.image(img_bytes, caption="🎨 معايدتك", use_container_width=True)
     st.download_button(
-        label="تنزيل | Download",
+        label="🖼️ تحميل الصورة",
         data=img_bytes,
         file_name=f"eid_greeting_{name}.png",
         mime="image/png"
