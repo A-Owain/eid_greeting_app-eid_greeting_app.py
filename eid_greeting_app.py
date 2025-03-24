@@ -59,7 +59,7 @@ if name:
     img_bytes.seek(0)
 
     # Show image and allow download
-    st.image(img_bytes, caption="🎨 معايدتك", use_container_width=True)
+    st.image(img_bytes, caption="بطاقة معايدتك | Your Greeting Card:", use_container_width=True)
 
     # Center the download button
     st.markdown("""
