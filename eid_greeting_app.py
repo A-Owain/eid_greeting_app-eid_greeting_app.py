@@ -32,7 +32,7 @@ if name:
     image_width, _ = base_image.size
     name_width = font_name.getbbox(bidi_name)[2]
     x_name = (image_width - name_width) / 2
-    y_name = 4450
+    y_name = 4400
 
     # Draw name
     shadow_offset = 2
