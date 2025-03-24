@@ -49,7 +49,7 @@ if name:
         pos_bbox = position_font.getbbox(bidi_pos)
         pos_width = pos_bbox[2] - pos_bbox[0]
         x_pos = (image_width - pos_width) / 2
-        y_pos = y_name + 180
+        y_pos = y_name + 250
         draw.text((x_pos + shadow_offset, y_pos + shadow_offset), bidi_pos, font=position_font, fill="black")
         draw.text((x_pos, y_pos), bidi_pos, font=position_font, fill="white")
 
