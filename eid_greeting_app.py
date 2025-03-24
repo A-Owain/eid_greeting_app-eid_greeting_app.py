@@ -67,11 +67,13 @@ if name:
         <a href="data:image/png;base64," download>
     """, unsafe_allow_html=True)
 
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
     st.download_button(
         label="تنزيل | Download",
         data=img_bytes,
         file_name=f"eid_greeting_{name}.png",
         mime="image/png"
     )
-
+    
     st.markdown("""</div>""", unsafe_allow_html=True)
