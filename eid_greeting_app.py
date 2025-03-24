@@ -13,7 +13,7 @@ st.title("TRAY Eid Greeting Generator")
 
 # Input fields
 name = st.text_input("Enter Your Name | ادخل اسمك", max_chars=30)
-position = st.text_input("Position (Optional) | المسمى الوظيفي (اختياري)",", max_chars=30)
+position = st.text_input("Position (Optional) | المسمى الوظيفي (اختياري)", max_chars=30)
 
 if name:
     # Reshape and format text for Arabic
