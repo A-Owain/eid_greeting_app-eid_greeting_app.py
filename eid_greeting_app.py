@@ -35,7 +35,7 @@ if name:
     name_bbox = font.getbbox(bidi_name)
     name_width = name_bbox[2] - name_bbox[0]
     x_name = (image_width - name_width) / 2
-    y_name = 1700
+    y_name = 1850
     # y_name = 4300
 
     # Draw name without shadow
@@ -48,7 +48,7 @@ if name:
         pos_bbox = position_font.getbbox(bidi_pos)
         pos_width = pos_bbox[2] - pos_bbox[0]
         x_pos = (image_width - pos_width) / 2
-        y_pos = y_name + 250
+        y_pos = y_name + 200
         draw.text((x_pos, y_pos), bidi_pos, font=position_font, fill="#EA2F2F")  # red
 
     # Convert to bytes
