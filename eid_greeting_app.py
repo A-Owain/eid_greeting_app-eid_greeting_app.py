@@ -35,7 +35,7 @@ if name:
     name_bbox = font.getbbox(bidi_name)
     name_width = name_bbox[2] - name_bbox[0]
     x_name = (image_width - name_width) / 2
-    y_name = 1900
+    y_name = 2000
     # y_name = 4300
 
     # Draw name without shadow
