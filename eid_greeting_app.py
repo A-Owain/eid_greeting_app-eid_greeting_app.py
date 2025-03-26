@@ -25,8 +25,8 @@ if name:
     draw = ImageDraw.Draw(base_image)
 
     # Load fonts
-    font_size_name = 100
-    font_size_position = 60
+    font_size_name = 70
+    font_size_position = 40
     # font_size_name = 150
     # font_size_position = 100
     font = ImageFont.truetype(FONT_PATH, font_size_name)
